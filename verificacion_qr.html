@@ -1,3 +1,37 @@
 <!DOCTYPE html>
-<html lang="es"
-                                                                
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificación</title>
+</head>
+<body>
+  <h1>Esperando verificación...</h1>
+  <div id="estado">❌ No verificado</div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('id');
+
+    // Conexión WebSocket al servidor (local o vía Ngrok)
+    const ws = new WebSocket("ws://<TU_IP_LOCAL_O_NGROK>:3000");
+
+    ws.onopen = () => {
+        console.log("Conectado al servidor WebSocket");
+
+        // Avisar al servidor que este usuario abrió la página
+        ws.send("usuario_abierto:" + userId);
+    };
+
+    ws.onmessage = (event) => {
+        console.log("Mensaje recibido:", event.data);
+        if(event.data === "verificado:" + userId) {
+            document.getElementById("estado").textContent = "✅ Verificado";
+            // Aquí puedes mostrar la animación con <model-viewer>
+        }
+    };
+
+    // Simulación: si quieres, para probar, puedes enviar verificación
+    // setTimeout(() => { ws.send("verificado:" + userId); }, 5000);
+  </script>
+</body>
+</html>
