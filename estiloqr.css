@@ -1,0 +1,114 @@
+/* ======== FUENTES ======== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&family=Gagalin&family=Open+Sans:wght@400;600;700&family=DM+Serif+Display&display=swap');
+
+/* ======== ESTILO GENERAL ======== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #0054a6 0%, #007bc3 40%, #0093d1 100%);
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fondo decorativo suave */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 25% 30%, rgba(255,255,255,0.08) 0 25%, transparent 40%),
+              radial-gradient(circle at 75% 70%, rgba(255,255,255,0.06) 0 30%, transparent 50%);
+  z-index: -1;
+  filter: blur(20px);
+  opacity: 0.6;
+}
+
+/* ======== CONTENEDOR DEL TEXTO ARRIBA CON LOGO ======== */
+.texto-arriba-container {
+  display: flex;
+  align-items: center;  /* alinea verticalmente el logo con el texto */
+  justify-content: flex-start;
+  gap: 12px;  /* espacio entre logo y texto */
+  margin-bottom: 15px; /* reducido para acercar el título */
+}
+
+/* ======== LOGO AL LADO DEL TEXTO ======== */
+.logo-arriba img {
+  width: 40px;           /* tamaño pequeño */
+  height: 40px;
+  border-radius: 50%;    /* lo hace circular */
+  object-fit: cover;     /* mantiene proporción de la imagen */
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);  /* ligera sombra */
+}
+
+/* ======== TEXTO SUPERIOR ======== */
+.texto-arriba {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  color: #595c5e;
+  margin: 0;             /* quitar margen para alinear con el logo */
+  font-weight: 600;
+  margin-bottom: 5px; /* puedes ajustar si quieres acercarlo aún más */
+  letter-spacing: 0.6px;
+}
+
+/* ======== TÍTULO PRINCIPAL ======== */
+.titulo {
+  background: #fff;
+  color: #080808;
+  font-family: 'Gagalin', cursive;
+  font-size: 40px;
+  font-weight: 700; /* más grueso */
+  padding: 15px 40px;
+  border-radius: 50px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  text-transform: uppercase;
+  margin-bottom: 5px; /* puedes ajustar si quieres acercarlo aún más */
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* resalta el texto */
+}
+
+/* ======== SUBTÍTULO ======== */
+.subtitulo {
+  font-family: 'DM Serif Display', serif;
+  max-width: 650px;
+  font-size: 20px;
+  line-height: 1.7;
+  color: #ffffff;
+  margin-bottom: 40px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* ======== TEXTO "ESCANEA EL CÓDIGO" ======== */
+.instruccion {
+  font-size: 20px;
+  font-weight: 1000;
+  color: #0a0a0a;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ======== QR ======== */
+.qr-contenedor {
+  background: #fff;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.qr {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
