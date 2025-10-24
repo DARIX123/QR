@@ -10,7 +10,7 @@ $userId = $_GET['id'] ?? 1; // para pruebas, usa GET id, en producción toma de 
 
 // Generar la URL que irá dentro del QR
 // Esta URL debe apuntar a tu página de verificación con el userId
-$qrUrl = "https://multilobular-guarded-michelle.ngrok-free.dev/verificacion_qr.html?id=" . $userId;
+$qrUrl = "https://multilobular-guarded-michelle.ngrok-free.dev?id=" . $userId;
 
 // Carpeta donde guardar el QR
 $dir = 'qrcodes/';
