@@ -22,93 +22,173 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 25% 30%, rgba(255,255,255,0.08) 0 25%, transparent 40%),
-              radial-gradient(circle at 75% 70%, rgba(255,255,255,0.06) 0 30%, transparent 50%);
+  background: linear-gradient(to bottom, #550aea, #90cae3); /* Degradado de azul fuerte a azul claro */
   z-index: -1;
   filter: blur(20px);
   opacity: 0.6;
 }
 
-/* ======== CONTENEDOR DEL TEXTO ARRIBA CON LOGO ======== */
+/* Fondo decorativo con líneas y formas */
+body::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><pattern id="lines" patternUnits="userSpaceOnUse" width="20" height="20"><path d="M 0 0 L 20 20 M 20 0 L 0 20" stroke="rgba(255, 255, 255, 0.1)" stroke-width="2"/></pattern></defs><rect width="100%" height="100%" fill="url(#lines)" /><circle cx="50%" cy="50%" r="100" fill="rgba(255, 255, 255, 0.05)" /><circle cx="30%" cy="30%" r="80" fill="rgba(255, 255, 255, 0.05)" /><circle cx="70%" cy="70%" r="120" fill="rgba(255, 255, 255, 0.05)" /></svg>');
+  z-index: -1;
+  pointer-events: none; /* Para asegurar que no interfiera con la interacción */
+}
+
+
+
+/* ======== ENCABEZADO ======== */
 .texto-arriba-container {
   display: flex;
-  align-items: center;  /* alinea verticalmente el logo con el texto */
-  justify-content: flex-start;
-  gap: 12px;  /* espacio entre logo y texto */
-  margin-bottom: 15px; /* reducido para acercar el título */
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
-/* ======== LOGO AL LADO DEL TEXTO ======== */
 .logo-arriba img {
-  width: 40px;           /* tamaño pequeño */
-  height: 40px;
-  border-radius: 50%;    /* lo hace circular */
-  object-fit: cover;     /* mantiene proporción de la imagen */
-  box-shadow: 0 3px 8px rgba(0,0,0,0.25);  /* ligera sombra */
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
 }
 
-/* ======== TEXTO SUPERIOR ======== */
 .texto-arriba {
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
-  color: #595c5e;
-  margin: 0;             /* quitar margen para alinear con el logo */
+  color: #262728;
   font-weight: 600;
-  margin-bottom: 5px; /* puedes ajustar si quieres acercarlo aún más */
-  letter-spacing: 0.6px;
+  margin: 0;
 }
 
-/* ======== TÍTULO PRINCIPAL ======== */
+/* ======== TÍTULOS ======== */
 .titulo {
   background: #fff;
   color: #080808;
   font-family: 'Gagalin', cursive;
   font-size: 40px;
-  font-weight: 700; /* más grueso */
   padding: 15px 40px;
   border-radius: 50px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.25);
   text-transform: uppercase;
-  margin-bottom: 5px; /* puedes ajustar si quieres acercarlo aún más */
-  letter-spacing: 2px;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* resalta el texto */
+  margin-bottom: 5px;
 }
 
-/* ======== SUBTÍTULO ======== */
 .subtitulo {
   font-family: 'DM Serif Display', serif;
   max-width: 650px;
   font-size: 20px;
-  line-height: 1.7;
   color: #ffffff;
   margin-bottom: 40px;
-  font-weight: 400;
-  letter-spacing: 0.5px;
+  line-height: 1.7;
 }
 
-/* ======== TEXTO "ESCANEA EL CÓDIGO" ======== */
 .instruccion {
   font-size: 20px;
-  font-weight: 1000;
+  font-weight: 900;
   color: #0a0a0a;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
-/* ======== QR ======== */
-.qr-contenedor {
-  background: #fff;
-  border-radius: 25px;
-  padding: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+/* ======== SOBRE CON ANIMACIÓN ======== */
+.sobre {
+  position: relative;
+  width: 600px; /* Aumentar el ancho del sobre */
+  height: 300px; /* Aumentar la altura del sobre */
+  background: #f5f4f4;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  overflow: hidden;
 }
 
+/* Parte superior (la tapa del sobre) */
+.sobre .tapa {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #d1b12f;
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transform-origin: top;
+  transition: transform 0.6s ease;
+  z-index: 2;
+}
+
+/* Al pasar el mouse la tapa se abre */
+.sobre:hover .tapa {
+  transform: rotateX(180deg);
+}
+
+/* Interior del sobre */
+.sobre .cuerpo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end; /* Alinea la hoja al fondo */
+  justify-content: center;
+  background: #b49704;
+  z-index: 1;
+}
+
+/* Hoja que se expande */
+.hoja {
+  position: absolute; /* Cambiado a absolute para que no afecte el flujo del documento */
+  bottom: 0; /* Inicialmente en la parte inferior del sobre */
+  width: 100%;
+  transform: translateY(100%); /* Inicialmente oculta */
+  transition: transform 0.6s ease;
+  text-align: center;
+}
+
+.imagen-lado {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 550px; /* Ajusta el tamaño si quieres */
+  z-index: 1;
+  opacity: 0.3;
+}
+
+.imagen-lado img {
+  width: 100%;
+  height: auto;
+}
+
+.imagen-lado.izquierda {
+  left: 20px;
+}
+
+.imagen-lado.derecha {
+  right: 20px;
+}
+
+
+/* Código QR */
 .qr {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  display: block;
-  margin: auto;
+  width: 250px;
+  height: 250px;
+  transition: opacity 0.4s ease;
+  opacity: 0;
 }
 
+/* Texto de la hoja */
+.texto-hoja {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Cuando el mouse pasa sobre el sobre, la hoja se desplaza hacia arriba y se queda ahí */
+.sobre:hover .hoja {
+  transform: translateY(-100%); /* Mueve la hoja hacia arriba */
+}
+
+/* Mantener la hoja visible después de la animación */
+.sobre:hover .qr {
+  opacity: 1; /* Hace visible el QR */
+}

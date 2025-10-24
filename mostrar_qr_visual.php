@@ -58,7 +58,30 @@ $qrcodePath = $qrcodeDir . basename($archivo);
     }
   };
 </script>
+  <?php if($archivo): ?>
+    <!-- SOBRE CON ANIMACIÓN -->
+    <div class="sobre">
+      <div class="tapa"></div>
+      <div class="cuerpo">
+        <img src="<?php echo htmlspecialchars($archivo); ?>" alt="Código QR" class="qr">
+      </div>
+    </div>
+    
+  <?php else: ?>
+    <p>Error al cargar el QR</p>
+  <?php endif; ?>
+     
+  <!-- IMAGEN SIMULADA LADO IZQUIERDO -->
+<div class="imagen-lado izquierda">
+  <img src="fondooo-removebg-preview.png" alt="Imagen Lado Izquierdo">
+</div>
+
+<!-- IMAGEN SIMULADA LADO DERECHO -->
+<div class="imagen-lado derecha">
+  <img src="fondooo-removebg-preview.png" alt="Imagen Lado Derecho">
+</div>
 
 </body>
 </html>
+
 
