@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verificación completada</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background: radial-gradient(circle at center, #0a0a1a 0%, #000000 100%);
+      font-family: "Orbitron", sans-serif;
+      color: #00ffff;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .mensaje {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+      color: #00ffff;
+      text-shadow: 0 0 15px #00ffff;
+      animation: aparecer 2s ease forwards;
+    }
+
+    .mensaje h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+    }
+
+    .mensaje p {
+      font-size: 1.2rem;
+      color: #66ffff;
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -55%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <div class="mensaje">
+    <h1>✅ Verificación completada</h1>
+    <p>Tu acceso ha sido confirmado</p>
+  </div>
+
+  <script>
+    // Obtener el canvas y su contexto
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    // Ajustar tamaño del canvas
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Array para las partículas
+    let particles = [];
+
+    // Crear partículas iniciales
+    for (let i = 0; i < 120; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 3 + 1,
+        speedX: (Math.random() - 0.5) * 1.5,
+        speedY: (Math.random() - 0.5) * 1.5,
+      });
+    }
+
+    // Dibujar las partículas
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 255, 255, 0.8)";
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#00ffff";
+        ctx.fill();
+      }
+    }
+
+    // Actualizar posición
+    function updateParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        // Rebote en los bordes
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+      }
+    }
+
+    // Loop de animación
+    function animate() {
+      drawParticles();
+      updateParticles();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Redimensionar si cambia el tamaño de la ventana
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>

@@ -24,7 +24,7 @@
     }
 
     // Conexión WebSocket al servidor Node.js (usar tu URL ngrok)
-    const socket = new WebSocket("https://multilobular-guarded-michelle.ngrok-free.dev");
+    const socket = new WebSocket("wss://multilobular-guarded-michelle.ngrok-free.dev");
 
     socket.onopen = () => {
         console.log("Conectado al servidor WebSocket");
@@ -32,19 +32,15 @@
         socket.send("usuario_abierto:" + userId);
     };
 
-    socket.onmessage = function(event) {
-      const data = JSON.parse(event.data);
-      const estado = document.getElementById("estado");
-
-    if (data.status === "verificado") {
-      estado.innerHTML = "✅ Verificado correctamente";
-      estado.style.color = "green";
-    } else {
-      estado.innerHTML = "❌ No verificado";
-      estado.style.color = "red";
-    }
-  };
-
+    socket.onmessage = (event) => {
+        console.log("Mensaje recibido:", event.data);
+        // Cuando el servidor envíe la confirmación de verificación
+        if(event.data === "verificado:" + userId) {
+            document.getElementById("estado").textContent = "✅ Verificado";
+            // Mostrar animación
+            document.getElementById("animacion").style.display = "block";
+        }
+    };
 
     socket.onerror = (err) => {
         console.error("Error WebSocket:", err);
