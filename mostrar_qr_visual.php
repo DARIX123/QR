@@ -31,14 +31,37 @@ $qrcodePath = $qrcodeDir . basename($archivo);
 
   <h4 class="instruccion">Escanea el código QR</h4>
 
-  <?php if ($archivo && file_exists($qrcodePath)): ?>
-    <div class="qr-contenedor">
-      <img src="qrcodes/<?php echo htmlspecialchars(basename($archivo)); ?>" alt="Código QR">
+<?php if ($archivo && file_exists($qrcodePath)): ?>
+  <div class="sobre">
+    <div class="tapa"></div>
+    <div class="cuerpo">
+      <div class="hoja">
+        <div class="tarjeta-qr">
+          <img src="qrcodes/<?php echo htmlspecialchars(basename($archivo)); ?>" alt="Código QR">
+
+        </div>
+      </div>
+      
     </div>
-  <?php else: ?>
-    <p style="color:red;">⚠️ Error: no se generó el QR.</p>
-    <p><small>Ruta buscada: <?php echo htmlspecialchars($qrcodePath); ?></small></p>
-  <?php endif; ?>
+  </div>
+<?php else: ?>
+  <p style="color:red;">⚠️ Error: no se generó el QR.</p>
+  <p><small>Ruta buscada: <?php echo htmlspecialchars($qrcodePath); ?></small></p>
+<?php endif; ?>
+
+<!-- IMÁGENES DE FONDO LATERALES -->
+<div class="imagen-lado izquierda">
+  <img src="fondooo-removebg-preview.png" alt="Imagen Lado izquierdo">
+</div>
+
+<div class="imagen-lado derecha">
+  <img src="fondooo-removebg-preview.png" alt="Imagen Lado derecho">
+</div>
+
+
+  
+
+ 
 
   <script>
   const urlParams = new URLSearchParams(window.location.search);
@@ -58,30 +81,7 @@ $qrcodePath = $qrcodeDir . basename($archivo);
     }
   };
 </script>
-  <?php if($archivo): ?>
-    <!-- SOBRE CON ANIMACIÓN -->
-    <div class="sobre">
-      <div class="tapa"></div>
-      <div class="cuerpo">
-        <img src="<?php echo htmlspecialchars($archivo); ?>" alt="Código QR" class="qr">
-      </div>
-    </div>
-    
-  <?php else: ?>
-    <p>Error al cargar el QR</p>
-  <?php endif; ?>
-     
-  <!-- IMAGEN SIMULADA LADO IZQUIERDO -->
-<div class="imagen-lado izquierda">
-  <img src="fondooo-removebg-preview.png" alt="Imagen Lado Izquierdo">
-</div>
-
-<!-- IMAGEN SIMULADA LADO DERECHO -->
-<div class="imagen-lado derecha">
-  <img src="fondooo-removebg-preview.png" alt="Imagen Lado Derecho">
-</div>
 
 </body>
 </html>
-
 
