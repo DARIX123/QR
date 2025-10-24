@@ -18,17 +18,36 @@ $archivo = $_GET['archivo'] ?? '';
 
   <h2 class="titulo">TRAYECTORIA DE APRENDIZAJE</h2>
 
-  <p class="subtitulo">Acerque su dispositivo y desbloquee una animación exclusiva que transforma este momento en algo visualmente increíble.</p>
+  <p class="subtitulo">
+    Acerque su dispositivo y desbloquee una animación exclusiva que transforma este momento en algo visualmente increíble.
+  </p>
 
   <h4 class="instruccion">Escanea el código QR</h4>
 
   <?php if($archivo): ?>
-      <div class="qr-contenedor">
+    <!-- SOBRE CON ANIMACIÓN -->
+    <div class="sobre">
+      <div class="tapa"></div>
+      <div class="cuerpo">
         <img src="<?php echo htmlspecialchars($archivo); ?>" alt="Código QR" class="qr">
       </div>
+    </div>
+    
   <?php else: ?>
-      <p>Error al cargar el QR</p>
+    <p>Error al cargar el QR</p>
   <?php endif; ?>
+     
+  <!-- IMAGEN SIMULADA LADO IZQUIERDO -->
+<div class="imagen-lado izquierda">
+  <img src="fondooo-removebg-preview.png" alt="Imagen Lado Izquierdo">
+</div>
+
+<!-- IMAGEN SIMULADA LADO DERECHO -->
+<div class="imagen-lado derecha">
+  <img src="fondooo-removebg-preview.png" alt="Imagen Lado Derecho">
+</div>
+
 </body>
 </html>
+
 
